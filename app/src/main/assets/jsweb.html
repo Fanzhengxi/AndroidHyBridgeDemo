@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript">
+<!--    无参方法-->
+         function showAlert(){
+            alert("Android calls Js with no parameters! ")
+         }
+         <!--         有参方法-->
+         function showAlertWithParam(param){
+             alert(param);
+         }
+         <!--有参方法，有返回值-->
+          function showAlertWithResult(param){
+            var result="Result : Android call Js "+param;
+<!--            JS调用Android的方法将返回值传给Android-->
+            window.JSInterface.jsMethod(result);
+         }
+<!--         有返回值minSdkVersion>=19-->
+         function showAlertWithReturn(param){
+              var result="Return : Android call Js "+param;
+              return result;
+         }
+
+    </script>
+    <script>
+        function callAndroid(){
+            window.JSInterface.showToast();
+        }
+        function callAndroidWithReturn(){
+            var result=window.JSInterface.showWithReturn();
+            alert(result);
+        }
+    </script>
+</head>
+<body>
+<div>
+    <h3>Js调用Android方法</h3>
+</div>
+<div><button onclick="callAndroid()">Js调用Android/无返回值</button>
+    <button onclick="callAndroidWithReturn()" style="margin-top:10px;">Js调用Android方法/有返回值</button>
+</div>
+
+</body>
+</html>
