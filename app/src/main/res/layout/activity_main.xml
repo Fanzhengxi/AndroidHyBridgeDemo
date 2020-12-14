@@ -118,6 +118,19 @@
         android:text="3.android4.2以下，自定义JsBridge实现JS调用Android" />
 
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="4.sava-java-js-webview-bridge 安全的JS和Android通信框架
+" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onSafeJsBridge"
+        android:text="safe jsbridge" />
 
     <WebView
         android:id="@+id/myWebView"

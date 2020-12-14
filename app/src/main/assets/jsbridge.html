@@ -24,6 +24,7 @@ function jsCallAndroid(obj,method,params,callback){
 //2.onAndroidFinished
 function onAndroidFinished(port,jsonObj){
 //从callback取出对应的回调函数
+alert(JSON.stringify(jsonObj));
     var callback=callbacks[port];
     callback(jsonObj);
     //从callbacks中删除callback

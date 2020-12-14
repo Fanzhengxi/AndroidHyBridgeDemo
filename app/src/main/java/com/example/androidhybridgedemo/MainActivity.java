@@ -30,6 +30,8 @@ import android.widget.Toast;
 import com.example.androidhybridgedemo.jsbridge.JSBridge;
 import com.example.androidhybridgedemo.jsbridge.JSBridgeChromeClient;
 import com.example.androidhybridgedemo.jsbridge.Methods;
+import com.example.androidhybridgedemo.safejsbridge.HostJsScope;
+import com.example.androidhybridgedemo.safejsbridge.SafeChromeClient;
 import com.example.androidhybridgedemo.util.ToastUtil;
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String INDEX_URL="file:///android_asset/index.html";
     private static final String JSWEB_URL="file:///android_asset/jsweb.html";
     private static  final String JSBRIDGE_URL="file:///android_asset/jsbridge.html";
-
+    private static final String SAVE_JSBRIDGE_URL="file:///android_asset/safejsbridge.html";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
                 ToastUtil.toastMsg(MainActivity.this, "网页请求成功了");
             }
         });
-
-
     }
 
     public void webRequest(View view) {
@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setBuiltInZoomControls(true);//创建缩放按钮
         webSettings.setDisplayZoomControls(true);//显示缩放按钮
         webSettings.setJavaScriptEnabled(true);
-
     }
 
     /**
@@ -180,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
     /**
      * 开放给JS调用的方法
      */
@@ -225,12 +225,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * JSBridge实现
+     * @param view
+     */
     public void jsBridge(View view) {
         myWebView.setWebChromeClient(new JSBridgeChromeClient());
         showWebView(myWebView,JSBRIDGE_URL);
         JSBridge.register("JSBridge", Methods.class);
     }
+    public void onSafeJsBridge(View view) {
+        showWebView(myWebView,SAVE_JSBRIDGE_URL);
+        //注入的接口名是HostApp,JS层根据【HostApp.方法】调用HostJsScope类中的方法
+        myWebView.setWebChromeClient(new SafeChromeClient("HostApp", HostJsScope.class));
 
-
-
+    }
 }

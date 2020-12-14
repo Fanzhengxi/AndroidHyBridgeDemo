@@ -1,0 +1,10 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+<!--HostApp是java层注入的接口名，toast是java开放给js的方法toast(WebView webView,String message)，可以不用传webview，系统会默认使用显示当前网页的webview.-->
+<button onclick="HostApp.toast('I come from JS !')">调试SaveJsBridge</button>
+</body>
+</html>

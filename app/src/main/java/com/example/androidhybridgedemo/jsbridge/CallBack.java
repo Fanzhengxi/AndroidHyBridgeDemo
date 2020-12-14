@@ -14,7 +14,7 @@ public class CallBack {
     public void apply(JSONObject jsonObject){
         if (mWebView!=null){
             //调用js的方法onAndroidFinished
-            mWebView.loadUrl("javascript:onAndroidFinished('port',String.valueOf(jsonObject))");
+            mWebView.loadUrl("javascript:onAndroidFinished('mPort',String.valueOf(jsonObject))");
         }
     }
 }

@@ -19,3 +19,8 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+#--------------BEGIN:注入到页面的接口类防混淆----------------
+-keepclassmembers class com.example.androidhybridgedemo.safejsbridge.HostJsScope{*;}
+#--------------END------------------------------------
+#--------------BEGIN:返回到页面的自定义JAVA对象防混淆
+#-keepclassmembers class com.example.androidhybridgedemo.safejsbridge.HostJsScope$RetJavaObj{*;}
