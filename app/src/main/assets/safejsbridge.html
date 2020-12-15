@@ -5,6 +5,14 @@
 </head>
 <body>
 <!--HostApp是java层注入的接口名，toast是java开放给js的方法toast(WebView webView,String message)，可以不用传webview，系统会默认使用显示当前网页的webview.-->
-<button onclick="HostApp.toast('I come from JS !')">调试SaveJsBridge</button>
+<button onclick="HostApp.toast(101)">调试SaveJsBridge</button>
+<br/>
+<button onclick="HostApp.toast(HostApp.getTestString())">测试函数返回值</button>
 </body>
+<br/>
+<button onclick="HostApp.testJsCallback('我是同步回调结果',function(msg){HostApp.toast(msg);})">测试同步回调</button>
+<br/>
+<button onclick="HostApp.delayJsCallback(3,'我异步回调结果',function(msg){HostApp.toast(msg);})">测试异步回调</button>
+</body>
+
 </html>

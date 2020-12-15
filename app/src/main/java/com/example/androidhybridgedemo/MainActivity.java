@@ -239,6 +239,5 @@ public class MainActivity extends AppCompatActivity {
         showWebView(myWebView,SAVE_JSBRIDGE_URL);
         //注入的接口名是HostApp,JS层根据【HostApp.方法】调用HostJsScope类中的方法
         myWebView.setWebChromeClient(new SafeChromeClient("HostApp", HostJsScope.class));
-
     }
 }
