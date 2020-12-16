@@ -125,12 +125,26 @@
         android:text="4.sava-java-js-webview-bridge 安全的JS和Android通信框架
 " />
 
-    <Button
-        android:id="@+id/button5"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onSafeJsBridge"
-        android:text="safe jsbridge" />
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="onSafeJsBridge"
+            android:text="safe jsbridge" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:onClick="toWebStoreActivity"
+            android:text="网上商城" />
+    </LinearLayout>
 
     <WebView
         android:id="@+id/myWebView"

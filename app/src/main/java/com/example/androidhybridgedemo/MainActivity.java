@@ -4,6 +4,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.http.SslError;
 import android.os.Build;
@@ -33,6 +34,7 @@ import com.example.androidhybridgedemo.jsbridge.Methods;
 import com.example.androidhybridgedemo.safejsbridge.HostJsScope;
 import com.example.androidhybridgedemo.safejsbridge.SafeChromeClient;
 import com.example.androidhybridgedemo.util.ToastUtil;
+import com.example.androidhybridgedemo.webstore.WebStoreActivity;
 
 public class MainActivity extends AppCompatActivity {
     private WebView myWebView;
@@ -177,7 +179,9 @@ public class MainActivity extends AppCompatActivity {
 //        }
     }
 
-
+    public void toWebStoreActivity(View view) {
+        startActivity(new Intent(MainActivity.this, WebStoreActivity.class));
+    }
 
 
     /**

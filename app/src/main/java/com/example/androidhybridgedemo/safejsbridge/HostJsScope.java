@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.webkit.WebView;
 import android.widget.Toast;
+
 import com.example.androidhybridgedemo.util.ToastUtil;
 
 import java.util.concurrent.Executors;
@@ -17,22 +18,25 @@ import cn.pedant.SafeWebViewBridge.JsCallback;
  * public static T  functionName(WebView webview,Type param1,Type param2 .....){}
  */
 public class HostJsScope {
-    public static void toast(WebView webView,String message){
-        Toast.makeText(webView.getContext(),"String:"+message,Toast.LENGTH_SHORT).show();
+    public static void toast(WebView webView, String message) {
+        Toast.makeText(webView.getContext(), "String:" + message, Toast.LENGTH_SHORT).show();
     }
-    public static void toast(WebView webView,int message){
-        Toast.makeText(webView.getContext(),"int:"+message,Toast.LENGTH_SHORT).show();
+
+    public static void toast(WebView webView, int message) {
+        Toast.makeText(webView.getContext(), "int:" + message, Toast.LENGTH_SHORT).show();
     }
 
     /**
      * 给JS返回值
+     *
      * @param view
      * @return
      */
-    public static String getTestString(WebView view){
+    public static String getTestString(WebView view) {
         return "Android WebView";
     }
-    public static void testJsCallback(WebView view, String backMessage, JsCallback jsCallback){
+
+    public static void testJsCallback(WebView view, String backMessage, JsCallback jsCallback) {
         try {
             jsCallback.apply(backMessage);
         } catch (JsCallback.JsCallbackException e) {
@@ -40,7 +44,8 @@ public class HostJsScope {
         }
 
     }
-    public static void delayJsCallback(WebView webView,int ms,String backMessage,JsCallback jsCallback){
+
+    public static void delayJsCallback(WebView webView, int ms, String backMessage, JsCallback jsCallback) {
 //        TaskExecutor.scheduleTask(ms * 1000, new Runnable() {
 //            @Override
 //            public void run() {
@@ -81,6 +86,26 @@ public class HostJsScope {
             }
         }, 3000);//3秒后执行Runnable中的run方法
 
+    }
+
+    /**
+     * 异步购买商品
+     *
+     * @param webView
+     * @param JsCallback
+     */
+    public static void buyBook(WebView webView, JsCallback JsCallback) {
+        Handler handler = new Handler(Looper.getMainLooper());//不同线程中操作了webview会抛出异常，解决方法便是抛给主线程来处理
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JsCallback.apply("购买成功");
+                } catch (JsCallback.JsCallbackException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, 3000);//3秒后执行Runnable中的run方法
     }
 
 }
