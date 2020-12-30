@@ -1,2 +1,3 @@
+include ':mvc'
 include ':app'
 rootProject.name = "AndroidHyBridgeDemo"
